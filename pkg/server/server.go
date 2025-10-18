@@ -12,6 +12,7 @@ func Run() error {
 	webDir := "./web"
 
 	api.Init()
+
 	fs := http.FileServer(http.Dir(webDir))
 	http.Handle("/", fs)
 

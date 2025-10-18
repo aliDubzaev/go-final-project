@@ -2,6 +2,7 @@ package api
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"time"
 
@@ -47,9 +48,12 @@ func taskHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func writeJson(w http.ResponseWriter, data any) {
-	w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	json.NewEncoder(w).Encode(data)
+func writeJson(w http.ResponseWriter, v any, status ...int) {
+	if len(status) > 0 {
+		w.WriteHeader(status[0])
+	}
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(v)
 }
 
 func addTaskHandler(w http.ResponseWriter, r *http.Request) {
@@ -76,5 +80,5 @@ func addTaskHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	writeJson(w, map[string]any{"id": id})
+	writeJson(w, map[string]string{"id": fmt.Sprintf("%d", id)})
 }
