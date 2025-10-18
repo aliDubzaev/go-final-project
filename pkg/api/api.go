@@ -1,6 +1,8 @@
 package api
 
-import "net/http"
+import (
+	"net/http"
+)
 
 func Init() {
 	http.HandleFunc("/api/nextdate", nextDayHandler)

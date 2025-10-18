@@ -12,9 +12,7 @@ import (
 const dateFormat = "20060102"
 
 func afterNow(date, now time.Time) bool {
-	y1, m1, d1 := date.Date()
-	y2, m2, d2 := now.Date()
-	return time.Date(y1, m1, d1, 0, 0, 0, 0, time.UTC).After(time.Date(y2, m2, d2, 0, 0, 0, 0, time.UTC))
+	return date.Truncate(24 * time.Hour).After(now.Truncate(24 * time.Hour))
 }
 
 func NextDate(now time.Time, dstart, repeat string) (string, error) {

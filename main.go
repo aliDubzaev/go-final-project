@@ -3,8 +3,8 @@ package main
 import (
 	"log"
 
-	"go1f/pkg/db"
-	"go1f/pkg/server"
+	"github.com/aliDubzaev/go-final-project/pkg/db"
+	"github.com/aliDubzaev/go-final-project/pkg/server"
 )
 
 func main() {

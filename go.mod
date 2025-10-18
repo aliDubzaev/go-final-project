@@ -2,12 +2,9 @@ module github.com/aliDubzaev/go-final-project
 
 go 1.24.0
 
-replace go1f => ./
-
 require (
 	github.com/jmoiron/sqlx v1.4.0
 	github.com/stretchr/testify v1.11.1
-	go1f v0.0.0
 	modernc.org/sqlite v1.39.1
 )
 

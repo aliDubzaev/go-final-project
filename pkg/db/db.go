@@ -33,7 +33,7 @@ func Init(dbFile string) error {
 		}
 	}
 
-	DB, err := sql.Open("sqlite", dbFile)
+	DB, err = sql.Open("sqlite", dbFile)
 	if err != nil {
 		fmt.Println(err)
 		return err

@@ -1,5 +1,7 @@
 package db
 
+import "fmt"
+
 type Task struct {
 	ID      int64  `json:"id"`
 	Date    string `json:"date"`
@@ -10,6 +12,10 @@ type Task struct {
 
 func AddTask(task *Task) (int64, error) {
 	var id int64
+
+	if DB == nil {
+		return 0, fmt.Errorf("database not initialized")
+	}
 
 	query := `INSERT INTO scheduler (date, title, comment, repeat) VALUES (?, ?, ?, ?)`
 
