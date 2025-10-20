@@ -114,3 +114,39 @@ func UpdateTask(task *Task) error {
 	}
 	return nil
 }
+
+func DeleteTask(id string) error {
+	if DB == nil {
+		return fmt.Errorf("database not initialized")
+	}
+	res, err := DB.Exec(`DELETE FROM scheduler WHERE id = ?`, id)
+	if err != nil {
+		return err
+	}
+	n, err := res.RowsAffected()
+	if err != nil {
+		return err
+	}
+	if n == 0 {
+		return fmt.Errorf(`incorrect id for deleting task`)
+	}
+	return nil
+}
+
+func UpdateDate(next, id string) error {
+	if DB == nil {
+		return fmt.Errorf("database not initialized")
+	}
+	res, err := DB.Exec(`UPDATE scheduler SET date = ? WHERE id = ?`, next, id)
+	if err != nil {
+		return err
+	}
+	n, err := res.RowsAffected()
+	if err != nil {
+		return err
+	}
+	if n == 0 {
+		return fmt.Errorf(`incorrect id for updating date`)
+	}
+	return nil
+}
