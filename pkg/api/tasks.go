@@ -26,8 +26,6 @@ func tasksHandler(w http.ResponseWriter, r *http.Request) {
 		tasks = []*db.Task{}
 	}
 
-	w.Header().Set("Content-Type", "application/json")
-
 	writeJson(w, TasksResp{
 		Tasks: tasks,
 	})
