@@ -9,7 +9,7 @@
 
 1. Клонируйте репозиторий:
 
-        git clone https://github.com/<твоя-ссылка>/go-final-project.git
+        git clone https://github.com/aliDubzaev/go-final-project.git
         cd go-final-project
 
 2. Запустите сервер:
