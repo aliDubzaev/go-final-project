@@ -9,7 +9,6 @@ import (
 	"github.com/aliDubzaev/go-final-project/pkg/db"
 )
 
-// Основной хендлер для /api/task
 func taskHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case http.MethodGet:
@@ -25,7 +24,6 @@ func taskHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// GET /api/task?id=<id>
 func getTaskHandler(w http.ResponseWriter, r *http.Request) {
 	id := r.URL.Query().Get("id")
 	if id == "" {
@@ -40,7 +38,6 @@ func getTaskHandler(w http.ResponseWriter, r *http.Request) {
 	writeJson(w, task)
 }
 
-// POST /api/task
 func addTaskHandler(w http.ResponseWriter, r *http.Request) {
 	var task db.Task
 	if err := json.NewDecoder(r.Body).Decode(&task); err != nil {
@@ -63,7 +60,6 @@ func addTaskHandler(w http.ResponseWriter, r *http.Request) {
 	writeJson(w, map[string]string{"id": fmt.Sprintf("%d", id)})
 }
 
-// PUT /api/task
 func updateTaskHandler(w http.ResponseWriter, r *http.Request) {
 	var task db.Task
 	if err := json.NewDecoder(r.Body).Decode(&task); err != nil {
@@ -85,7 +81,6 @@ func updateTaskHandler(w http.ResponseWriter, r *http.Request) {
 	writeJson(w, map[string]any{})
 }
 
-// DELETE /api/task?id=<id>
 func deleteTaskHandler(w http.ResponseWriter, r *http.Request) {
 	id := r.URL.Query().Get("id")
 	if id == "" {
@@ -99,7 +94,6 @@ func deleteTaskHandler(w http.ResponseWriter, r *http.Request) {
 	writeJson(w, map[string]any{})
 }
 
-// POST /api/task/done?id=<id>
 func taskDoneHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		writeJson(w, map[string]string{"error": "Method not allowed"}, http.StatusMethodNotAllowed)

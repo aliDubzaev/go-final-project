@@ -10,7 +10,6 @@ type TasksResp struct {
 	Tasks []*db.Task `json:"tasks"`
 }
 
-// GET /api/tasks
 func tasksHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
 		writeJson(w, "error: only GET method is supported", http.StatusMethodNotAllowed)
